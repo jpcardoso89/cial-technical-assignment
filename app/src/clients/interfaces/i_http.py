@@ -6,7 +6,7 @@ from app.src.models.api_response import ApiResponse
 class IHttp:
 
     @abstractmethod
-    def post(self, body, headers:dict|None, query_params:dict|None) -> ApiResponse:
+    def post(self, body, url:str, headers:dict|None, query_params:dict|None) -> ApiResponse:
         pass
     
     @abstractmethod
