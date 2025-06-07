@@ -8,6 +8,13 @@ class PolygonClient:
     def __init__(self, http: IHttp, api_key:str) -> None:
         self.__http = http
         self.__api_key = api_key
+        self.__auth_headers = {}
     
     def get_daily_ticker_summary(self, _date:date, symbol:str)-> DailyTickerSummary:
-        pass
+        headers = self.__build_auth_headers()
+        self.__http.get(f"/v1/open-close/{symbol}", headers, None)
+        
+    
+    def __build_auth_headers(self) -> dict:
+        self.__auth_headers = {"Authorization": f"Bearer {self.__api_key}"}
+        return self.__auth_headers
