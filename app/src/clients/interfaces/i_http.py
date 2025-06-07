@@ -1,6 +1,6 @@
 from abc import abstractmethod
 
-from app.src.models.api_response import ApiResponse
+from src.models.api_response import ApiResponse
 
 
 class IHttp:

@@ -1,6 +1,6 @@
-from datetime import date
-from app.src.clients.interfaces.i_http import IHttp
-from app.src.models.daily_tricker_summary import DailyTickerSummary
+from datetime import date, datetime, timedelta
+from src.clients.interfaces.i_http import IHttp
+from src.models.daily_tricker_summary import DailyTickerSummary
 
 
 class PolygonClient:
@@ -9,10 +9,11 @@ class PolygonClient:
         self.__http = http
         self.__api_key = api_key
         self.__auth_headers = {}
+        self.__yesterday = datetime.now() - timedelta(days=1)
     
-    def get_daily_ticker_summary(self, _date:date, symbol:str)-> DailyTickerSummary:
+    def get_daily_ticker_summary(self, symbol:str)-> DailyTickerSummary:
         headers = self.__build_auth_headers()
-        response = self.__http.get(f"/v1/open-close/{symbol}", headers, None)
+        response = self.__http.get(f"/v1/open-close/{symbol}/{self.__yesterday.strftime('%Y-%m-%d')}?adjusted=true", headers, None)
         if response.status_code == 200:
             return DailyTickerSummary(**response.body)
         
