@@ -1,5 +1,5 @@
 class StockValues:
-    def __init__(self, open: float, high: float, low: float, close: float):
+    def __init__(self, open, high, low, close):
         self.open = open
         self.high = high
         self.low = low

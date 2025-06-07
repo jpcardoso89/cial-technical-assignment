@@ -7,10 +7,10 @@ from src.domain.model.stock_values import StockValues
 
 
 class CompanyData:
-    def __init__(self, status: str, purchased_amount: int, purchased_status: str, 
-                 request_data: date, company_code: str, company_name: str, 
-                 stock_values: StockValues, performance_data: PerformanceData, 
-                 competitors: List[Competitor]):
+    def __init__(self, status: str, purchased_amount: float|None, purchased_status: str|None, 
+                 request_data: date, company_code: str|None, company_name: str|None, 
+                 stock_values: StockValues|None, performance_data: PerformanceData|None, 
+                 competitors: List[Competitor]|None):
         self.status = status
         self.purchased_amount = purchased_amount
         self.purchased_status = purchased_status
