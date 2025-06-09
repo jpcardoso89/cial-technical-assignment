@@ -6,7 +6,7 @@ from src.domain.model.performance_data import PerformanceData
 from src.domain.model.stock_values import StockValues
 
 
-class CompanyData:
+class Stock:
     def __init__(self, status: str, purchased_amount: float|None, purchased_status: str|None, 
                  request_data: date, company_code: str|None, company_name: str|None, 
                  stock_values: StockValues|None, performance_data: PerformanceData|None, 

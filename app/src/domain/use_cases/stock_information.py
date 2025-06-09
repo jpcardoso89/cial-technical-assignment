@@ -1,7 +1,7 @@
 from datetime import date
 from src.clients.polygon_client import PolygonClient
 from src.domain.model.stock_values import StockValues
-from src.domain.model.company_data import CompanyData
+from app.src.domain.model.stock import Stock
 
 
 class GetStockInformationBySymbol:
@@ -9,7 +9,7 @@ class GetStockInformationBySymbol:
     def __init__(self, polygon_cli:PolygonClient):
         self.__polygon_cli = polygon_cli
         
-    def execute(self, symbol:str) -> CompanyData:
+    def execute(self, symbol:str) -> Stock:
         if symbol:
             daily = self.__polygon_cli.get_daily_ticker_summary(symbol)
             stock_values = StockValues(
@@ -18,7 +18,7 @@ class GetStockInformationBySymbol:
                 daily._low,
                 daily._close
             )
-            company = CompanyData(
+            company = Stock(
                 status="200",
                 purchased_amount=daily._volume,
                 purchased_status=daily._status,
