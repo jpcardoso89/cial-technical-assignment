@@ -5,7 +5,7 @@ from src.models.daily_tricker_summary import DailyTickerSummary
 
 class PolygonClient:
 
-    def __init__(self, http: IHttp, api_key:str) -> None:
+    def __init__(self, http: IHttp, api_key:str|None) -> None:
         self.__http = http
         self.__api_key = api_key
         self.__auth_headers = {}

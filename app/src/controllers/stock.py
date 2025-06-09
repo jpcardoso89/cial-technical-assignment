@@ -6,7 +6,7 @@ class StockController:
     def __init__(self, get_stock:GetStockInformationBySymbol) -> None:
         self._get_stock = get_stock
 
-    def get_stock_by(self, symbol:str) -> dict:
+    def get_stock_by(self, symbol:str):
         if symbol:
             stock = self._get_stock.execute(symbol)
             return stock.__dict__
