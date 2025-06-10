@@ -1,7 +1,7 @@
 from datetime import date
 from src.clients.polygon_client import PolygonClient
 from src.domain.model.stock_values import StockValues
-from app.src.domain.model.stock import Stock
+from src.domain.model.stock import Stock
 
 
 class GetStockInformationBySymbol:

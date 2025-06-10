@@ -21,7 +21,7 @@ class Stock:
         self.performance_data = performance_data
         self.competitors = competitors
     
-    def __dict__(self)-> dict:
+    def to_dict(self)-> dict:
         return {
             "status":self.status,
             "purchased_amount":self.purchased_amount,
@@ -29,7 +29,7 @@ class Stock:
             "request_data":self.request_data.isoformat(),
             "company_code":self.company_code,
             "company_name":self.company_name,
-            "stock_values":self.stock_values,
+            "stock_values":self.stock_values.__dict__,
             "performance_data":self.performance_data,
             "competitors":self.competitors,
         }

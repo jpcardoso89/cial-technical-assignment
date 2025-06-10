@@ -1,14 +1,15 @@
+import json
 import sys
 from pathlib import Path
 sys.path.append(str(Path(__file__).parent.parent))
 
-from fastapi import FastAPI
+from dotenv import load_dotenv
+from fastapi import FastAPI, Response, status
 from src.controllers.factory import build_stock_controller
-from src.clients.http_client import HttpClient
-from src.clients.polygon_client import PolygonClient
+
 
 app = FastAPI()
-
+load_dotenv()
 stock_controller = build_stock_controller()
 
 @app.get("/")
@@ -19,7 +20,10 @@ def read_root():
 def stock(stock_symbol:str):
    try:
       stock = stock_controller.get_stock_by(stock_symbol)
-      return stock
+      return Response(content=json.dumps(stock),
+                      status_code=status.HTTP_200_OK,
+                      media_type="application/json"
+                     )
    except Exception as e:
-      return {"status":"500"}
+      return {"message_error":"Internal server error"}
    
