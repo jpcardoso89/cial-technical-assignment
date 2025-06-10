@@ -1,3 +1,4 @@
+import json
 import sys
 from pathlib import Path
 sys.path.append(str(Path(__file__).parent.parent))
@@ -16,12 +17,13 @@ def read_root():
    return {"message":"hello, world!"}
 
 @app.get("/stock/{stock_symbol}")
-def stock(stock_symbol:str, response: Response):
+def stock(stock_symbol:str):
    try:
       stock = stock_controller.get_stock_by(stock_symbol)
-      response.status_code = status.HTTP_200_OK
-      return stock
+      return Response(content=json.dumps(stock),
+                      status_code=status.HTTP_200_OK,
+                      media_type="application/json"
+                     )
    except Exception as e:
-      response.status_code = status.HTTP_500_INTERNAL_SERVER_ERROR
-      return {"message_error":e}
+      return {"message_error":"Internal server error"}
    

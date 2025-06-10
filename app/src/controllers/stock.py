@@ -9,5 +9,5 @@ class StockController:
     def get_stock_by(self, symbol:str):
         if symbol:
             stock = self._get_stock.execute(symbol)
-            return stock.__dict__
+            return stock.to_dict()
         raise Exception("Invalid symbol")
